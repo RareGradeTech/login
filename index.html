@@ -189,7 +189,7 @@
             </div>
         </section>
     </main>
-    <!-- ALL MODALS (unchanged) -->
+    <!-- ALL MODALS -->
     <!-- Admin Login Modal -->
     <div id="adminLoginModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-[90]">
         <div class="modal-overlay absolute w-full h-full bg-gray-900/90 backdrop-blur-md"></div>
@@ -203,7 +203,9 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" class="w-5 h-5" alt="Google">
                 Sign in with Google
             </button>
-            <p class="text-xs text-gray-400 mt-8">Only employees registered as Admin can enter</p>
+            <p class="text-xs text-gray-400 mt-4 mb-2">Not registered yet?</p>
+            <a href="admin-register.html" class="block w-full pill-btn bg-blue-50 text-blue-600 font-black py-3 text-sm text-center">REGISTER AS ADMIN</a>
+            <p class="text-xs text-gray-400 mt-6">Only employees registered as Admin can enter</p>
         </div>
     </div>
     <!-- Sign Out Confirmation -->
@@ -505,14 +507,15 @@
     </div>
     <!-- JAVASCRIPT -->
     <script>
-       const firebaseConfig = {
-  apiKey: "AIzaSyCh7Ute6LeSAxcNDEQwZg5m0cA4ujnLCfg",
-  authDomain: "test-17881.firebaseapp.com",
-  projectId: "test-17881",
-  storageBucket: "test-17881.firebasestorage.app",
-  messagingSenderId: "1057428047643",
-  appId: "1:1057428047643:web:f3801c0d933225a5cd35be"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyCh7Ute6LeSAxcNDEQwZg5m0cA4ujnLCfg",
+            authDomain: "test-17881.firebaseapp.com",
+            databaseURL: "https://test-17881-default-rtdb.firebaseio.com",
+            projectId: "test-17881",
+            storageBucket: "test-17881.firebasestorage.app",
+            messagingSenderId: "1057428047643",
+            appId: "1:1057428047643:web:f3801c0d933225a5cd35be"
+        };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
         const auth = firebase.auth();
@@ -775,10 +778,13 @@
         auth.onAuthStateChanged(async (user) => {
             const loginModal = document.getElementById('adminLoginModal');
             if (!user) {
-                if (!loginModal.classList.contains('opacity-0')) return;
-                toggleModal('adminLoginModal');
+                // Show login modal if not already shown
+                if (loginModal.classList.contains('opacity-0')) {
+                    toggleModal('adminLoginModal');
+                }
                 return;
             }
+            // User is signed in — verify they are a registered admin
             const snap = await db.ref('employees').orderByChild('email').equalTo(user.email.toLowerCase()).once('value');
             let isAdminUser = false;
             snap.forEach(child => {
@@ -787,8 +793,11 @@
             if (!isAdminUser) {
                 await auth.signOut();
                 alert("Access denied: This Google account is not registered as an Admin.");
-                toggleModal('adminLoginModal');
+                if (loginModal.classList.contains('opacity-0')) {
+                    toggleModal('adminLoginModal');
+                }
             } else {
+                // Admin verified — hide login modal if showing
                 if (!loginModal.classList.contains('opacity-0')) {
                     toggleModal('adminLoginModal');
                 }
@@ -806,6 +815,7 @@
                     await auth.signOut();
                     alert("Access denied: This Google account is not registered as an Admin.");
                 }
+                // If admin, onAuthStateChanged will handle closing the modal
             }).catch(err => {
                 console.error(err);
                 alert("Google sign-in failed: " + err.message);
@@ -815,7 +825,7 @@
         function confirmSignOut() { toggleModal('signOutConfirmModal'); signOutAdmin(); }
         function signOutAdmin() {
             auth.signOut().then(() => {
-                toggleModal('adminLoginModal');
+                // onAuthStateChanged will show the login modal
             }).catch(err => console.log("Sign out error:", err));
         }
         function startScanner() {
