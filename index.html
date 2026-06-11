@@ -564,120 +564,9 @@ scrollbar-width:none;
 <body>
 <div id="app">
 
-<!-- GOOGLE AUTH — shown first, z-index 10000 -->
-<div id="google-auth">
-  <div class="ga-icon">
-    <svg viewBox="0 0 40 40"><path d="M6 20 Q6 14 10 11 L10 10 L14 10 L14 12 Q16 10 20 10 Q24 10 26 12 L26 10 L30 10 L30 11 Q34 14 34 20 Q34 26 30 29 L30 30 L26 30 L26 28 Q24 30 20 30 Q16 30 14 28 L14 30 L10 30 L10 29 Q6 26 6 20Z"/></svg>
-  </div>
-  <div class="ga-wordmark">Gym Bro</div>
-  <div class="ga-sub">Train. Track. Dominate.</div>
-  <button class="ga-btn" id="ga-btn" onclick="doGoogle()">
-    <span id="ga-btn-icon"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
-    <span id="ga-btn-spinner" style="display:none;width:20px;height:20px;border:2px solid rgba(0,0,0,0.15);border-top-color:#333;border-radius:50%;animation:spin .6s linear infinite;"></span>
-    <span id="ga-btn-text">Continue with Google</span>
-  </button>
-  <div class="ga-err" id="ga-err"></div>
-  <div class="ga-loading" id="ga-loading" style="display:none;">Redirecting to Google...</div>
-</div>
-
-<!-- SPLASH — hidden by default, shown after Google auth succeeds -->
-<div id="splash" style="display:none;">
-  <div class="splash-logo">
-    <div class="splash-icon">
-      <svg viewBox="0 0 40 40"><path d="M6 20 Q6 14 10 11 L10 10 L14 10 L14 12 Q16 10 20 10 Q24 10 26 12 L26 10 L30 10 L30 11 Q34 14 34 20 Q34 26 30 29 L30 30 L26 30 L26 28 Q24 30 20 30 Q16 30 14 28 L14 30 L10 30 L10 29 Q6 26 6 20Z"/></svg>
-    </div>
-    <div class="splash-wordmark">Gym Bro</div>
-    <div class="splash-sub">Train. Track. Dominate.</div>
-  </div>
-  <div class="splash-bar"></div>
-</div>
-
-<!-- ONBOARDING -->
-<div id="onboarding" style="display:none;">
-  <div class="ob-slides" id="ob-slides">
-    <!-- Slide 1 -->
-    <div class="ob-slide">
-      <div class="ob-bg"><div class="ob-gradient"></div></div>
-      <div class="ob-slide-inner">
-        <div class="ob-badge"><div class="ob-badge-dot"></div><span class="ob-badge-text">Welcome</span></div>
-        <div class="ob-headline">Built for<br><span>Serious</span><br>Athletes</div>
-        <div class="ob-body">Track every rep, every set, every PR. Gym Bro is your training partner that never misses a session.</div>
-        <div class="ob-dots"><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
-        <div class="ob-footer">
-          <button class="ob-skip" onclick="skipOnboarding()">Skip</button>
-          <button class="ob-next" onclick="nextSlide()">Next →</button>
-        </div>
-      </div>
-    </div>
-    <!-- Slide 2 -->
-    <div class="ob-slide">
-      <div class="ob-bg"><div class="ob-gradient"></div></div>
-      <div class="ob-slide-inner">
-        <div class="ob-badge"><div class="ob-badge-dot"></div><span class="ob-badge-text">Tracking</span></div>
-        <div class="ob-headline">Log<br>Every<br><span>Set</span></div>
-        <div class="ob-body">Sets, reps, weight, RPE, rest times — captured in seconds. Auto-calculates your 1RM and alerts you to new PRs.</div>
-        <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
-        <div class="ob-footer">
-          <button class="ob-skip" onclick="skipOnboarding()">Skip</button>
-          <button class="ob-next" onclick="nextSlide()">Next →</button>
-        </div>
-      </div>
-    </div>
-    <!-- Slide 3 -->
-    <div class="ob-slide">
-      <div class="ob-bg"><div class="ob-gradient"></div></div>
-      <div class="ob-slide-inner">
-        <div class="ob-badge"><div class="ob-badge-dot"></div><span class="ob-badge-text">Progress</span></div>
-        <div class="ob-headline">Watch<br>Your<br><span>Growth</span></div>
-        <div class="ob-body">Visual charts, muscle heatmaps, body measurements, and transformation photos. See exactly how far you've come.</div>
-        <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div></div>
-        <div class="ob-footer">
-          <button class="ob-skip" onclick="skipOnboarding()">Skip</button>
-          <button class="ob-next" onclick="nextSlide()">Next →</button>
-        </div>
-      </div>
-    </div>
-    <!-- Slide 4 - Profile Setup -->
-    <div class="ob-slide">
-      <div class="ob-bg"><div class="ob-gradient"></div></div>
-      <div class="ob-slide-inner">
-        <div class="ob-badge"><div class="ob-badge-dot"></div><span class="ob-badge-text">Setup</span></div>
-        <div class="ob-headline">Set<br>Your<br><span>Goals</span></div>
-        <div class="ob-form" style="margin-top:12px;">
-          <div>
-            <div class="ob-label">Your Name</div>
-            <input class="ob-input" id="ob-name" type="text" placeholder="John Doe">
-          </div>
-          <div>
-            <div class="ob-label">Fitness Level</div>
-            <div class="ob-chips">
-              <button class="ob-chip" onclick="selectChip(this,'level')">Beginner</button>
-              <button class="ob-chip sel" onclick="selectChip(this,'level')">Intermediate</button>
-              <button class="ob-chip" onclick="selectChip(this,'level')">Advanced</button>
-            </div>
-          </div>
-          <div>
-            <div class="ob-label">Primary Goal</div>
-            <div class="ob-goal-grid">
-              <div class="ob-goal-card sel" onclick="selectGoal(this)"><div class="ob-goal-icon">💪</div><div class="ob-goal-label">Muscle Gain</div></div>
-              <div class="ob-goal-card" onclick="selectGoal(this)"><div class="ob-goal-icon">🏋️</div><div class="ob-goal-label">Strength</div></div>
-              <div class="ob-goal-card" onclick="selectGoal(this)"><div class="ob-goal-icon">🔥</div><div class="ob-goal-label">Fat Loss</div></div>
-              <div class="ob-goal-card" onclick="selectGoal(this)"><div class="ob-goal-icon">⚡</div><div class="ob-goal-label">Endurance</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div></div>
-        <div class="ob-footer">
-          <button class="ob-skip" onclick="skipOnboarding()">Skip</button>
-          <button class="ob-next" onclick="finishOnboarding()">Get Started 🔥</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- MAIN APP -->
-<div id="main-app" style="display:none;flex:1;position:relative;overflow:hidden;">
+<div id="main-app" style="display:flex;flex:1;position:relative;overflow:hidden;">
 
   <!-- HOME -->
   <div id="home-screen" class="screen active">
@@ -1214,12 +1103,13 @@ scrollbar-width:none;
 // FIREBASE CONFIG
 // ══════════════════════════════════════════════
 const firebaseConfig = {
-  apiKey: "AIzaSyCh7Ute6LeSAxcNDEQwZg5m0cA4ujnLCfg",
-  authDomain: "test-17881.firebaseapp.com",
-  projectId: "test-17881",
-  storageBucket: "test-17881.firebasestorage.app",
-  messagingSenderId: "1057428047643",
-  appId: "1:1057428047643:web:f3801c0d933225a5cd35be"
+  apiKey: "AIzaSyAWS9XaibVh0R8DLgPr5HHxcd3UaDHhZUk",
+  authDomain: "maxiapp-ecebd.firebaseapp.com",
+  projectId: "maxiapp-ecebd",
+  storageBucket: "maxiapp-ecebd.firebasestorage.app",
+  messagingSenderId: "905818003389",
+  appId: "1:905818003389:web:0e1ff5f0f9cf517db964d4",
+  measurementId: "G-5GWF0E118E"
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
@@ -1328,167 +1218,66 @@ const STREAK_MSGS = ['Start your streak!','1 day in — let\'s go!','2 days stro
 
 
 // ══════════════════════════════════════════════
-// INIT & AUTH
+// INIT & AUTH — No auth required, go straight to app
 // ══════════════════════════════════════════════
 
-// Helper: show error on auth screen
-function showAuthError(msg) {
-  const errEl = document.getElementById('ga-err');
-  errEl.textContent = msg;
-  errEl.classList.add('show');
-}
+// Set a default guest user so Firestore calls don't break
+currentUser = { uid: 'guest', displayName: 'Athlete', email: '' };
 
-// Helper: reset button to idle
-function resetAuthBtn() {
-  const btn  = document.getElementById('ga-btn');
-  const icon = document.getElementById('ga-btn-icon');
-  const spin = document.getElementById('ga-btn-spinner');
-  const txt  = document.getElementById('ga-btn-text');
-  if (btn)  { btn.disabled = false; btn.style.opacity = ''; }
-  if (icon) icon.style.display = '';
-  if (spin) spin.style.display = 'none';
-  if (txt)  txt.textContent = 'Continue with Google';
-  document.getElementById('ga-loading').style.display = 'none';
-}
-
-// Helper: put button into loading state
-function setAuthBtnLoading(label) {
-  const btn  = document.getElementById('ga-btn');
-  const icon = document.getElementById('ga-btn-icon');
-  const spin = document.getElementById('ga-btn-spinner');
-  const txt  = document.getElementById('ga-btn-text');
-  if (btn)  { btn.disabled = true; btn.style.opacity = '0.75'; }
-  if (icon) icon.style.display = 'none';
-  if (spin) spin.style.display = '';
-  if (txt)  txt.textContent = label || 'Signing in…';
-}
-
-// Helper: friendly error from Firebase error object
-function friendlyAuthError(e) {
-  if (!e) return 'Sign-in failed. Please try again.';
-  if (e.code === 'auth/unauthorized-domain') {
-    return 'This domain is not authorised in Firebase. In Firebase Console go to Authentication → Settings → Authorised domains and add this domain, then try again.';
-  }
-  if (e.code === 'auth/network-request-failed') return 'Network error. Check your internet connection and try again.';
-  if (e.code === 'auth/too-many-requests')       return 'Too many attempts. Please wait a moment before trying again.';
-  if (e.code === 'auth/user-disabled')            return 'This account has been disabled.';
-  const msg = (e.message || 'Sign-in failed.')
-    .replace('Firebase: ', '').replace(/\s*\(auth\/[^)]+\)/g, '').trim();
-  return msg || 'Sign-in failed. Please try again.';
-}
-
-// Set LOCAL persistence so auth survives page reloads (critical for redirect flow)
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
-
-// STEP 1: Process redirect result FIRST (before onAuthStateChanged reacts to it)
-auth.getRedirectResult().then(result => {
-  resetAuthBtn();
-}).catch(e => {
-  resetAuthBtn();
-  if (!e.code || e.code === 'auth/no-auth-event') return;
-  showAuthError(friendlyAuthError(e));
+// Boot the app immediately
+window.addEventListener('DOMContentLoaded', () => {
+  const seen = localStorage.getItem('gb_onboarding_done');
+  // Mark onboarding done so it never shows
+  localStorage.setItem('gb_onboarding_done', '1');
+  // Load profile then init
+  loadUserProfile().then(() => {
+    initApp();
+  });
 });
 
-// STEP 2: React to auth state changes
-auth.onAuthStateChanged(user => {
-  if (user) {
-    currentUser = user;
-    document.getElementById('google-auth').style.display = 'none';
-    document.getElementById('splash').style.display = 'flex';
-    setTimeout(() => {
-      document.getElementById('splash').classList.add('hide');
-      setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 500);
-      loadUserProfile().then(() => {
-        const seen = localStorage.getItem('gb_onboarding_done');
-        if (!seen) {
-          document.getElementById('onboarding').style.display = 'flex';
-        } else {
-          document.getElementById('main-app').style.display = 'flex';
-          initApp();
-        }
-      });
-    }, 1800);
-  } else {
-    currentUser = null;
-    document.getElementById('google-auth').style.display = 'flex';
-    document.getElementById('splash').style.display = 'none';
-    document.getElementById('onboarding').style.display = 'none';
-    document.getElementById('main-app').style.display = 'none';
-    resetAuthBtn();
-  }
-});
-
-// Google Sign-In: tries popup first, falls back to redirect
-async function doGoogle() {
-  const btn = document.getElementById('ga-btn');
-  if (btn && btn.disabled) return; // prevent double-tap
-
-  document.getElementById('ga-err').classList.remove('show');
-  setAuthBtnLoading('Signing in…');
-
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope('email');
-  provider.addScope('profile');
-
-  try {
-    await auth.signInWithPopup(provider);
-    // onAuthStateChanged fires automatically — nothing else needed
-  } catch(e) {
-    const popupFailCodes = [
-      'auth/popup-blocked',
-      'auth/popup-closed-by-user',
-      'auth/cancelled-popup-request',
-      'auth/operation-not-supported-in-this-environment',
-    ];
-
-    if (popupFailCodes.includes(e.code)) {
-      // Popup unavailable — fall back to full-page redirect
-      setAuthBtnLoading('Redirecting…');
-      document.getElementById('ga-loading').style.display = 'block';
-      try {
-        await auth.signInWithRedirect(provider);
-        return; // page navigates away
-      } catch(e2) {
-        resetAuthBtn();
-        showAuthError(friendlyAuthError(e2));
-        return;
-      }
-    }
-
-    resetAuthBtn();
-    showAuthError(friendlyAuthError(e));
-  }
-
+// Sign-out stub (keeps any logout button from erroring)
+async function doLogout() {
+  location.reload();
 }
+
 
 async function loadUserProfile() {
+  // Try Firestore first; fall back to localStorage, then defaults
   try {
     const doc = await db.collection('users').doc(currentUser.uid).get();
     if (doc.exists) {
       userProfile = doc.data();
-    } else {
-      userProfile = {
-        name: currentUser.displayName || 'Athlete',
-        email: currentUser.email,
-        level: 'Intermediate',
-        goal: 'Muscle Gain',
-        streak: 0,
-        totalWorkouts: 0,
-        prs: {},
-        measurements: [],
-        createdAt: new Date().toISOString()
-      };
-      await db.collection('users').doc(currentUser.uid).set(userProfile);
+      return;
     }
+  } catch(e) {}
+
+  // Check localStorage cache
+  const cached = localStorage.getItem('gb_profile');
+  if (cached) {
+    try { userProfile = JSON.parse(cached); return; } catch(e) {}
+  }
+
+  // Fresh defaults
+  userProfile = {
+    name: localStorage.getItem('gb_onboarding_name') || 'Athlete',
+    level: localStorage.getItem('gb_onboarding_level') || 'Intermediate',
+    goal: localStorage.getItem('gb_onboarding_goal') || 'Muscle Gain',
+    streak: 0,
+    totalWorkouts: 0,
+    prs: {},
+    measurements: [],
+    createdAt: new Date().toISOString()
+  };
+
+  // Try to persist to Firestore
+  try {
+    await db.collection('users').doc(currentUser.uid).set(userProfile);
   } catch(e) {
-    userProfile = { name: currentUser.displayName || 'Athlete', streak:0, totalWorkouts:0, prs:{}, measurements:[] };
+    localStorage.setItem('gb_profile', JSON.stringify(userProfile));
   }
 }
 
-async function doLogout() {
-  await auth.signOut();
-  location.reload();
-}
+// doLogout defined above
 
 // ══════════════════════════════════════════════
 // ONBOARDING
